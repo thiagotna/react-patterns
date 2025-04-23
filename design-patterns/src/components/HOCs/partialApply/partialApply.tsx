@@ -1,8 +1,15 @@
-export const partialApply = <P extends object>(
+import React from 'react'
+
+export function partialApply<P extends object, K extends keyof P>(
   Component: React.ComponentType<P>,
-  partialProps: Partial<P>,
-) => {
-  return (props: Omit<P, keyof typeof partialProps>) => (
-    <Component {...partialProps} {...(props as P)} />
-  )
+  fixedProps: Pick<P, K>,
+) {
+  // Omit props that have already been "fixed"
+  const WrappedComponent = (props: Omit<P, K>) => {
+    return <Component {...(fixedProps as P)} {...(props as P)} />
+  }
+  WrappedComponent.displayName = `PartialApply(${
+    Component.displayName || Component.name || 'Component'
+  })`
+  return WrappedComponent
 }

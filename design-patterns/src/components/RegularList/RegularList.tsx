@@ -1,22 +1,27 @@
-interface RegularListProps {
-  items: any[]
-  resourceName: string
-  ItemComponent: React.ComponentType<any>
+type ItemComponentProps<T, R extends string> = {
+  [K in R]: T
 }
 
-export const RegularList = ({
+interface RegularListProps<T, R extends string> {
+  items: T[]
+  resourceName: R
+  ItemComponent: React.ComponentType<ItemComponentProps<T, R>>
+}
+
+export const RegularList = <T, R extends string>({
   items,
   resourceName,
   ItemComponent,
-}: RegularListProps) => {
+}: RegularListProps<T, R>) => {
   return (
     <>
-      {items.map((item, index) => (
-        <ItemComponent
-          key={index}
-          {...{ [resourceName]: item }} // Spread the item as a prop with the name of the resource
-        />
-      ))}
+      {items.map((item, index) => {
+        const props = {
+          [resourceName]: item,
+        } as ItemComponentProps<T, R>
+
+        return <ItemComponent key={index} {...props} />
+      })}
     </>
   )
 }
