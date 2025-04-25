@@ -1,5 +1,3 @@
-import React from 'react'
-
 export function partialApply<P extends object, K extends keyof P>(
   Component: React.ComponentType<P>,
   fixedProps: Pick<P, K>,
