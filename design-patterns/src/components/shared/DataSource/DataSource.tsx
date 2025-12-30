@@ -1,11 +1,30 @@
 import React, { useState, useEffect, Suspense } from 'react'
+import { DataSourceProps } from './types'
 
-interface DataSourceProps {
-  getDataFunction: () => Promise<any>
-  resourceName: string
-  children: React.ReactNode
-}
-
+/**
+ * DataSource component that fetches data and provides it to child components.
+ *
+ * This component implements the Render Props pattern, fetching data asynchronously
+ * and injecting it into child components via props cloning.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <DataSource
+ *   getDataFunction={async () => fetch('/api/users').then(r => r.json())}
+ *   resourceName="users"
+ * >
+ *   <UserList />
+ * </DataSource>
+ * ```
+ *
+ * @param {DataSourceProps} props - The component props
+ * @param {() => Promise<any>} props.getDataFunction - Async function that fetches the data
+ * @param {string} props.resourceName - The prop name to inject data into child components
+ * @param {ReactNode} props.children - Child components that will receive the fetched data
+ *
+ * @returns {JSX.Element} Loading state or rendered children with injected data
+ */
 export const DataSource = ({
   getDataFunction,
   resourceName,

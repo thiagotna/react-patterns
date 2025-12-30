@@ -1,11 +1,18 @@
 import React, { useEffect, useState, Suspense } from 'react'
+import { ResourceLoaderProps } from './types'
 
-interface ResourceLoaderProps {
-  resourceUrl: string
-  resourceName: string
-  children: React.ReactNode
-}
-
+/**
+ * Custom hook for fetching and loading remote resources.
+ *
+ * @param url - The URL endpoint to fetch data from
+ * @param resourceName - The property name to extract from the JSON response
+ * @returns An object containing the fetched data and loading state
+ * @returns {any} data - The extracted resource data, or null if not yet loaded
+ * @returns {boolean} loading - Loading state indicator
+ *
+ * @example
+ * const { data, loading } = useResource('https://api.example.com/users', 'users')
+ */
 const useResource = (url: string, resourceName: string) => {
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState(true)

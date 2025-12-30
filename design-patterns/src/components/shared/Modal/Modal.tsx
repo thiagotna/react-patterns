@@ -1,9 +1,26 @@
-interface ModalProps {
-  isOpen: boolean
-  toggleModal: () => void
-  children: React.ReactNode
-}
+import { ModalProps } from './types'
 
+/**
+ * Modal component that displays a centered dialog overlay with header, body, and footer sections.
+ *
+ * @component
+ * @param {ModalProps} props - The component props
+ * @param {boolean} props.isOpen - Controls visibility of the modal
+ * @param {() => void} props.toggleModal - Callback function to toggle modal open/close state
+ * @param {React.ReactNode} props.children - Content to be rendered in the modal body
+ *
+ * @returns {React.ReactElement} A modal overlay with a white container including header, body, and footer
+ *
+ * @example
+ * const [isOpen, setIsOpen] = useState(false);
+ * const toggleModal = () => setIsOpen(!isOpen);
+ *
+ * return (
+ *   <Modal isOpen={isOpen} toggleModal={toggleModal}>
+ *     <p>Modal content goes here</p>
+ *   </Modal>
+ * );
+ */
 export const Modal = ({ isOpen, toggleModal, children }: ModalProps) => {
   return (
     <>
