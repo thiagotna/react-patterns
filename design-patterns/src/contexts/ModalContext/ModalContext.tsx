@@ -1,10 +1,17 @@
-import { createContext } from 'react'
+import { useState } from 'react'
+import { createContextFactory } from '../createContextFactory/createContextFactory'
+import { ModalContextType } from './types'
 
-interface ModalContextType {
-  isOpen: boolean
-  togglenModal: () => void
-}
+export const { Provider: ModalProvider, useContext: useModal } =
+  createContextFactory<ModalContextType>('ModalContext', () => {
+    const [isOpen, setIsOpen] = useState(false)
 
-export const ModalContext = createContext<ModalContextType | undefined>(
-  undefined,
-)
+    const toggleModal = () => {
+      setIsOpen((prev) => !prev)
+    }
+
+    return {
+      isOpen,
+      toggleModal,
+    }
+  })
