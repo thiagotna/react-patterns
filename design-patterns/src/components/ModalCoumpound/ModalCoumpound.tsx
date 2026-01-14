@@ -1,7 +1,4 @@
-import {
-  ModalProvider,
-  useModal,
-} from '../../contexts/ModalContext/ModalContext'
+import { useModal } from '../../contexts/ModalContext/ModalContext'
 import { Modal } from '../shared/Modal/Modal'
 import { ModalButton } from './ModalButton/ModalButton'
 
