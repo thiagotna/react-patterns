@@ -21,7 +21,11 @@ import { ModalProps } from './types'
  *   </Modal>
  * );
  */
-export const Modal = ({ isOpen, toggleModal, children }: ModalProps) => {
+export const Modal = ({
+  isOpen,
+  toggleModal,
+  children,
+}: ModalProps): React.ReactElement => {
   return (
     <>
       {isOpen && (

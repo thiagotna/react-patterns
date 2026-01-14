@@ -1,5 +1,6 @@
 import { SplitScreen } from './components/shared/SplitScreen/SplitScreen'
-import { Modal } from './components/shared/Modal/Modal'
+import { ModalCoumpound } from './components/ModalCoumpound/ModalCoumpound'
+import { ModalProvider } from './contexts/ModalContext/ModalContext'
 
 function App() {
   return (
@@ -8,9 +9,9 @@ function App() {
         <h2>Left Component</h2>
         <h2>Right Component</h2>
       </SplitScreen>
-      <Modal isOpen={false} toggleModal={() => alert('Toggle Modal')}>
-        <p>This is the modal content.</p>
-      </Modal>
+      <ModalProvider>
+        <ModalCoumpound />
+      </ModalProvider>
     </>
   )
 }
